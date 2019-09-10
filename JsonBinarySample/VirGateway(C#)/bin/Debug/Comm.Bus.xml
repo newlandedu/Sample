@@ -1,0 +1,458 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Comm.Bus</name>
+    </assembly>
+    <members>
+        <member name="T:Comm.Bus.ILibFormBase">
+            <summary>
+            窗体接口,配合<see cref="!:Newland.ViewWindow.WindowBase"/>使用
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibFormBase.FunctionId">
+            <summary>
+            功能编号
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibFormBase.HaveVM">
+            <summary>
+            是否有ViewModel
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibFormBase.ViewModel">
+            <summary>
+            获取该功能对应的MV
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibFormBase.ParentForm">
+            <summary>
+            父窗体
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibFormBase.StayTopForm">
+            <summary>
+            停留在自己顶端的窗体
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibFormBase.IsSingleton">
+            <summary>
+            是否全局窗体,单例窗体
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.ILibFormBase.OnFormCreateCompleted(System.Object[])">
+            <summary>
+            当窗体创建完成时触发
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.ILibFormBase.TransDataMethod(System.String,System.Object[])">
+            <summary>
+            公共执行方法，用于窗体间数据的传递
+            </summary>
+            <param name="senderKey">用于识别呼叫方的Key值</param>
+            <param name="args">方法的参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Comm.Bus.ValueChangeStatus">
+            <summary>
+            值改变状态 
+            </summary>
+        </member>
+        <member name="F:Comm.Bus.ValueChangeStatus.UnChanged">
+            <summary>
+            没有更改
+            </summary>
+        </member>
+        <member name="F:Comm.Bus.ValueChangeStatus.Create">
+            <summary>
+            创建对象时的状态
+            </summary>
+        </member>
+        <member name="F:Comm.Bus.ValueChangeStatus.Add">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="F:Comm.Bus.ValueChangeStatus.Modify">
+            <summary>
+            更改
+            </summary>
+        </member>
+        <member name="F:Comm.Bus.ValueChangeStatus.Delete">
+            <summary>
+            删除
+            </summary>
+        </member>
+        <member name="T:Comm.Bus.PropertyRejectChangedEventArgs">
+            <summary>
+            模型状态改变的事件参数
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.PropertyRejectChangedEventArgs.#ctor(Comm.Bus.ILibModelBase)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="model"></param> 
+        </member>
+        <member name="P:Comm.Bus.PropertyRejectChangedEventArgs.Model">
+            <summary>
+            获取或设置改变状态的模型
+            </summary>
+        </member>
+        <member name="T:Comm.Bus.ILibModelBase">
+            <summary>
+            模型基类接口
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibModelBase.ValueStatus">
+            <summary>
+            获取或设置改变状态值 
+            </summary>
+        </member>
+        <member name="E:Comm.Bus.ILibModelBase.PropertyRejectChanged">
+            <summary>
+            属性更改后回滚事件
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.ILibModelBase.GetValue(System.String)">
+            <summary>
+            获取属性值
+            </summary>
+            <param name="propertyName">属性名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Comm.Bus.ILibModelBase.GetValue``1(System.String)">
+            <summary>
+            获取指定类型的属性值
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="propertyName">属性名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Comm.Bus.ILibModelBase.BeginInit">
+            <summary>
+            开始初始化成员 
+            </summary>
+            <remarks>此方法用于刚创建时，用于初始化成员，不会产生异动记录，与<see cref="M:Comm.Bus.ILibModelBase.EndInit"/>方法配对使用，初始化完后必须调用<see cref="M:Comm.Bus.ILibModelBase.EndInit"/>方法</remarks>
+        </member>
+        <member name="M:Comm.Bus.ILibModelBase.EndInit">
+            <summary>
+            结束初始化成员
+            </summary>
+            <remarks>此方法用于刚创建时，用于初始化成员，不会产生异动记录，与<see cref="M:Comm.Bus.ILibModelBase.BeginInit"/>方法配对使用，调用此方法前必须调用<see cref="M:Comm.Bus.ILibModelBase.BeginInit"/>方法</remarks>
+        </member>
+        <member name="M:Comm.Bus.ILibModelBase.AcceptChanges">
+            <summary>
+            提交自上次调用 <see cref="M:Comm.Bus.ILibModelBase.AcceptChanges"/> 以来对该对象的状态属性进行的所有更改
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.ILibModelBase.RejectChanges">
+            <summary>
+             回滚该对象自上次调用<see cref="M:Comm.Bus.ILibModelBase.AcceptChanges"/> 以来对该对象上的状态属性进行的所有更改
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.ILibModelBase.GetChangeItems">
+            <summary>
+            获取异动属性名称集 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Comm.Bus.LibPropertyValue">
+            <summary>
+            Model 的属性值项，提供原始值，当前值
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.LibPropertyValue.PropertyName">
+            <summary>
+            获取属性名称
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.LibPropertyValue.Current">
+            <summary>
+            获取或设置当前值
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.LibPropertyValue.Original">
+            <summary>
+            获取原始值
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibPropertyValue.#ctor(Comm.Bus.LibModelBase,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="model"></param>
+            <param name="propertyName">属性名称</param>
+        </member>
+        <member name="M:Comm.Bus.LibPropertyValue.AcceptChange">
+            <summary>
+            提交自上次调用 <see cref="M:Comm.Bus.LibPropertyValue.AcceptChange"/> 以来对该状态属性进行的更改
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibPropertyValue.RejectChanges">
+            <summary>
+             回滚该对象自上次调用<see cref="M:Comm.Bus.LibPropertyValue.AcceptChange"/> 以来对该状态属性进行的更改
+            </summary>
+        </member>
+        <member name="T:Comm.Bus.ILibProviderBase">
+            <summary>
+            功能提供者基接口定义
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibProviderBase.FunctionId">
+            <summary>
+            功能编号
+            </summary>
+        </member>
+        <member name="T:Comm.Bus.LibInternalProvider">
+            <summary>
+            做为底层库给FunctionID传值,屏蔽上层直接修改接口FunctionId
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.LibInternalProvider.FunctionId">
+            <summary>
+            功能编号
+            </summary>
+        </member>
+        <member name="T:Comm.Bus.LibProviderBase">
+            <summary>
+            功能提供者基类定义
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.LibProviderBase.IsGlobal">
+            <summary>
+            获取一个值,表示此实例是否为全局的对象
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibProviderBase.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibProviderBase.CreateCompleted(System.Object[])">
+            <summary>
+            Provider创建完成方法,可以传参数
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Comm.Bus.LibProviderBase.InitialMembers">
+            <summary>
+            初始成员方法，子类可以重写： 无关设备的初始化写这里
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibProviderBase.OnCreateCompleted(System.Object[])">
+            <summary>
+            Provider创建完成方法 可以传参数
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Comm.Bus.LibProviderBase.OnLoad">
+            <summary>
+            加载此提供者时机点 
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibProviderBase.DoDispose(System.Boolean)">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibProviderBase.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:Comm.Bus.LibModelBase">
+            <summary>
+            模型基类，提供属性值改变时和改变后的事件通知和管理，子类只需要调用<see cref="M:Comm.Bus.LibModelBase.SetValue(System.String,System.Object)"/>方法即可引发
+            </summary>
+            <remarks>创建此类派生的子类的状态默认为<see cref="!:ChangeState"/>.Unchanged,如果是新增必须在附值前将状态改为<see cref="!:ChangeState"/>.Added</remarks>
+        </member>
+        <member name="P:Comm.Bus.LibModelBase.ValueStatus">
+            <summary>
+            获取或设置改变状态值 
+            </summary>
+        </member>
+        <member name="E:Comm.Bus.LibModelBase.PropertyRejectChanged">
+            <summary>
+            属性更改后回滚事件
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.SetValue(System.String,System.Object)">
+            <summary>
+            设定属性值（引发PropertyChanging与PropertyChanged）
+            </summary>
+            <param name="propertyName">属性名</param>
+            <param name="value">要设定的值</param>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.SetValue``1(System.Linq.Expressions.Expression{System.Func{``0}},System.Object)">
+            <summary>
+            设定属性值（引发PropertyChanging与PropertyChanged）
+            </summary>
+            <param name="propertyExpression">属性名表达式</param>
+            <param name="value">要设定的值</param>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.GetValue(System.String)">
+            <summary>
+            获取属性值
+            </summary>
+            <param name="propertyName">属性名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.GetValue``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            获取属性值
+            </summary>
+            <param name="propertyExpression">属性名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.GetValue``1(System.String)">
+            <summary>
+            获取指定类型的属性值
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="propertyName">属性名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.RaisePropertyChanged(System.String)">
+            <summary>
+            (重写基类)根据propertyName引发PropertyChanged事件
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.RaisePropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            (重写基类)根据属性表达式引发PropertyChanged事件
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.RaisePropertyChanging(System.String,Comm.Sys.PropertyChangingEventArgs)">
+            <summary>
+            (重写基类)根据propertyName引发PropertyChanging事件
+            </summary>
+            <param name="propertyName">属性名</param>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.RaisePropertyChanging``1(System.Linq.Expressions.Expression{System.Func{``0}},Comm.Sys.PropertyChangingEventArgs)">
+            <summary>
+            (重写基类)根据属性表达式引发PropertyChanging事件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="propertyExpression"></param>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.BeginInit">
+            <summary>
+            开始初始化成员 
+            </summary>
+            <remarks>此方法用于刚创建时，用于初始化成员，不会产生异动记录，与<see cref="M:Comm.Bus.LibModelBase.EndInit"/>方法配对使用，初始化完后必须调用<see cref="M:Comm.Bus.LibModelBase.EndInit"/>方法</remarks>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.EndInit">
+            <summary>
+            结束初始化成员
+            </summary>
+            <remarks>此方法用于刚创建时，用于初始化成员，不会产生异动记录，与<see cref="M:Comm.Bus.LibModelBase.BeginInit"/>方法配对使用，调用此方法前必须调用<see cref="M:Comm.Bus.LibModelBase.BeginInit"/>方法</remarks>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.AcceptChanges">
+            <summary>
+            提交自上次调用 <see cref="!:ModelBase.AcceptChanges"/> 以来对该对象的状态属性进行的所有更改
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.RejectChanges">
+            <summary>
+             回滚该对象自上次调用<see cref="!:ModelBase.AcceptChanges"/> 以来对该对象上的状态属性进行的所有更改
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.GetChangeItems">
+            <summary>
+            获取异动属性名称集
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Comm.Bus.LibModelBase.Dispose">
+            <summary>
+            释放内存
+            </summary>
+        </member>
+        <member name="T:Comm.Bus.ILibVMBase">
+            <summary>
+            VM基类,该层具有特殊的含义,定义如下:
+            上层项目可以单独创建一个项目继承该层,可以创建对于Model的DTO单独文件夹如DTO,
+            专门存放DTO类,用于每个页面功能的DTO对象,每个DTO可继承于LibModelBase.cs,再创建指定页面的VM,继承LibVMBase.cs
+            VM里面可以定义单个DTO，也可以定义ObservableCollection的DTO
+            1、对于WPF应用来说,在指定页面的VM中实现ICommand等事件命令和调用数据库与设备的Provider，
+            然后实现Provider提取出来的数据转为DTO对象,在View的代码中指定this.DataContext = VM;
+            2、对于MVC来说,在指定页面的VM中实调用数据库与设备的Provider，然后实现Provider提取出来的数据转为DTO对象,
+            在Controllers中调用VM（若不创建VM，则直接使用Controllers作为VM来看等也可以）
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibVMBase.FunctionId">
+            <summary>
+            VM功能标识
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibVMBase.IsGlobal">
+            <summary>
+            VM是否全局
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibVMBase.HaveProvider">
+            <summary>
+            表示此功能是否有Provider
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibVMBase.Provider">
+            <summary>
+            获取内部提供者
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.ILibVMBase.View">
+            <summary>
+            VM对应的窗体
+            </summary>
+        </member>
+        <member name="M:Comm.Bus.ILibVMBase.GetPropertyValue``1(System.String)">
+            <summary>
+            根据属性名称取得对应的属性值
+            </summary>
+            <typeparam name="T">属性值的类型</typeparam>
+            <param name="property">属性名称</param>
+            <returns>属性值</returns>
+        </member>
+        <member name="M:Comm.Bus.ILibVMBase.SetPropertyValue(System.String,System.Object)">
+            <summary>
+            设指定属性名称的属性值
+            </summary>
+            <param name="property">属性名称</param>
+            <param name="value">属性值</param>
+        </member>
+        <member name="M:Comm.Bus.ILibVMBase.GetProvider``1">
+            <summary>
+            获取指定类型的Provider,可以此来判断不同版本下的功能
+            </summary>
+            <typeparam name="TProvider"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Comm.Bus.ILibVMBase.CreateCompleted(System.Object[])">
+            <summary>
+            实例构造完成后执行
+            </summary>
+        </member>
+        <member name="T:Comm.Bus.LibInternalVM">
+            <summary>
+            做为底层库给FunctionID传值,屏蔽上层访问接口FunctionId
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.LibInternalVM.FunctionId">
+            <summary>
+            功能编号
+            </summary>
+        </member>
+        <member name="P:Comm.Bus.LibInternalVM.View">
+            <summary>
+            对应的窗体
+            </summary>
+        </member>
+    </members>
+</doc>
